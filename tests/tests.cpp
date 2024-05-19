@@ -1,22 +1,27 @@
 #include <gtest/gtest.h>
 #include <main.cpp>
 
-TEST(ForwardsTest, Attack) {
-  Forwards player("John");
-  player.attack();
-  EXPECT_EQ(player.name, "John");
-  EXPECT_STREQ(player.getName(), "John");
+TEST(TranslatorTest, Constructor) {
+  Translator* player = new Translator("Ivan Ivanov");
+  
+  EXPECT_EQ(player->getName(), "Ivan Ivanov");
 }
 
-TEST(CenterTest, Defense) {
-  Center player("Jane");
-  player.defense();
-  EXPECT_EQ(player.name, "Jane");
-  EXPECT_STREQ(player.getName(), "Jane");
+TEST(PlayerTest, Defense) {
+
+  Player* player = new Center("Jane Doe");
+
+
+  player->defense();
+
+
+  EXPECT_EQ(player->getName(), "Jane Doe");
 }
 
-TEST(TranslatorTest, Attack) {
-  Translator player("Ivan");
-  player.attack();
-  EXPECT_STREQ(player.fc->getName(), "Ivan");
+TEST(PlayerTest, Attack) {
+  Player* player = new Forwards("John Doe");
+
+  player->attack();
+
+  EXPECT_EQ(player->getName(), "John Doe");
 }

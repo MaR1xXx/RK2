@@ -3,6 +3,9 @@
 using namespace std;
 class Player{
 public:
+	string getName() {
+	return name;
+	}
 	virtual void attack()=0;
 	virtual void defense()=0;
 	Player(string name){
