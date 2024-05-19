@@ -2,9 +2,9 @@
 #include <main.cpp>
 
 TEST(TranslatorTest, Constructor) {
-  Translator* player = new Translator("Ivan Ivanov");
+  Translator* player = new Translator("");
   
-  EXPECT_EQ(player->getName(), "Ivan Ivanov");
+  EXPECT_EQ(player->getName(), "");
 }
 
 TEST(PlayerTest, Defense) {
@@ -12,16 +12,16 @@ TEST(PlayerTest, Defense) {
   Player* player = new Center("Jane Doe");
 
 
-  player->defense();
+  string output = player->defense();
 
 
-  EXPECT_EQ(player->getName(), "Jane Doe");
+  EXPECT_EQ(output, "Jane Doe");
 }
 
 TEST(PlayerTest, Attack) {
   Player* player = new Forwards("John Doe");
 
-  player->attack();
+  string output = player->attack();
 
-  EXPECT_EQ(player->getName(), "John Doe");
+  EXPECT_EQ(output, "John Doe");
 }

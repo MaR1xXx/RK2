@@ -3,11 +3,10 @@
 using namespace std;
 class Player{
 public:
-	string getName() {
-	return name;
-	}
-	virtual void attack()=0;
-	virtual void defense()=0;
+	string name;
+public:
+	virtual string attack()=0;
+	virtual string defense()=0;
 	Player(string name){
 		this->name = name;
 	}
@@ -17,16 +16,17 @@ public:
 	virtual ~Player(){
 
 	}
-protected:
-	string name;
 };
 class Forwards :public Player{
 public:
-	virtual void attack(){
+
+	virtual string attack(){
 		cout<<"Forward attack "<<name<<endl;
+		return name;
 	}
-	virtual void defense(){
+	virtual string defense(){
 		cout<<"Forward defense "<<name<<endl;
+		return name;
 	}
 	Forwards():Player(){
 
@@ -42,11 +42,16 @@ private:
 };
 class Center: public Player{
 public:
-	virtual void attack(){
-		cout<<"Center attack "<<name<<endl;
+	string getName() {
+	return name;
 	}
-	virtual void defense(){
+	virtual string attack(){
+		cout<<"Center attack "<<name<<endl;
+		return name;
+	}
+	virtual string defense(){
 		cout<<"Center defense "<<name<<endl;
+		return name;
 	}
 	Center(string name){
 		this->name = name;
@@ -63,12 +68,12 @@ private:
 class ForeignCenter
 {
 public:
+	string getName() {
+	return name;
+	}
 
 	void setName(string name){
 		this->name = name;
-	}
-	string getName(){
-		return name;
 	}
 	void foreignCenterAttack(){
 		cout<<"Foreign Center attack "<<name<<endl;
@@ -93,17 +98,22 @@ private:
 //adapter
 class Translator : public Player{
 public:
+	string getName() {
+	return name;
+	}
 	Translator(string name){
 		fc = new ForeignCenter(name);
 	}
 	Translator(){
 
 	}
-	virtual void attack(){
+	virtual string attack(){
 		fc->foreignCenterAttack();
+		return name;
 	}
-	virtual void defense(){
+	virtual string defense(){
 		fc->foreignCenterDefense();
+		return name;
 	}
 	virtual ~Translator(){
 
