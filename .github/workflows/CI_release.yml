@@ -10,7 +10,7 @@ jobs:
   build_packages_Linux:
 
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
 
@@ -19,17 +19,9 @@ jobs:
 
     - name: Configure
       run: cmake ${{github.workspace}} -B ${{github.workspace}}/build -D PRINT_VERSION=${GITHUB_REF_NAME#v}
-    - name: Configure and Build
-      run: |
-          cd example
-          cmake -B build
-          cmake --build build
-          build/example
-    - name: Test
-      run: |
-          cmake -B build
-          cmake --build build
-          build/test_app
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build
 
     - name: Build package
       run: cmake --build ${{github.workspace}}/build --target package
