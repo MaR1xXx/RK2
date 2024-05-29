@@ -1,4 +1,4 @@
-name: app
+name: app1
 
 on:
  push:
