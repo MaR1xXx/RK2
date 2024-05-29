@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(header STATIC program_main.cpp)
 set_target_properties(header PROPERTIES LINKER_LANGUAGE CXX)
 
-add_executable(game game.cpp)
+add_executable(game program_main.cpp)
