@@ -34,3 +34,4 @@ jobs:
       with:
         artifacts: "build/*.deb,build/*.rpm,build/*.tar.gz,build/*.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: true
