@@ -19,9 +19,17 @@ jobs:
 
     - name: Configure
       run: cmake ${{github.workspace}} -B ${{github.workspace}}/build -D PRINT_VERSION=${GITHUB_REF_NAME#v}
-
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build
+    - name: Configure and Build
+      run: |
+          cd example
+          cmake -B build
+          cmake --build build
+          build/example
+    - name: Test
+      run: |
+          cmake -B build
+          cmake --build build
+          build/test_app
 
     - name: Build package
       run: cmake --build ${{github.workspace}}/build --target package
