@@ -27,21 +27,20 @@ TEST(PlayerTest, Attack) {
 }
 
 TEST(ProgramTest, RunProgramMainLogic) {
-    // Redirect cout to capture output
+    // Перенаправляем cout для захвата вывода
     std::stringstream buffer;
     std::streambuf* prevcoutbuf = std::cout.rdbuf(buffer.rdbuf());
 
-    // Run the function which includes creations and method calls
+    // Выполняем тестируемую функцию
     RunProgramMainLogic();
 
-    // Restore cout to its original state
+    // Возвращаем стандартный вывод на место
     std::cout.rdbuf(prevcoutbuf);
 
-    // Check if the correct outputs were produced
-    // Assuming that 'attack' and 'defense' methods output some identifiable text
+    // Проверяем содержимое вывода
     std::string output = buffer.str();
-    EXPECT_TRUE(output.find("James") != std::string::npos);  // Check for Forwards attack
-    EXPECT_TRUE(output.find("Maddie") != std::string::npos); // Check for Center attack
-    EXPECT_TRUE(output.find("YaoMing attack") != std::string::npos);  // Check for Translator attack
-    EXPECT_TRUE(output.find("YaoMing defense") != std::string::npos); // Check for Translator defense
+    EXPECT_TRUE(output.find("James") != std::string::npos); // Проверка атаки Forwards
+    EXPECT_TRUE(output.find("Maddie") != std::string::npos); // Проверка атаки Center
+    EXPECT_TRUE(output.find("YaoMing attack") != std::string::npos);  // Проверка атаки Translator
+    EXPECT_TRUE(output.find("YaoMing defense") != std::string::npos); // Проверка защиты Translator
 }
