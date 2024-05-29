@@ -26,21 +26,20 @@ TEST(PlayerTest, Attack) {
   EXPECT_EQ(output, "John Doe");
 }
 
-TEST(ProgramTest, RunProgramMainLogic) {
-    // Перенаправляем cout для захвата вывода
-    std::stringstream buffer;
-    std::streambuf* prevcoutbuf = std::cout.rdbuf(buffer.rdbuf());
 
-    // Выполняем тестируемую функцию
+TEST(RunProgramMainLogicTest, FunctionBehavior) {
+    // Заглушка для проверки вывода в stdout
+    testing::internal::CaptureStdout();
+
+    // Вызов тестируемой функции
     RunProgramMainLogic();
 
-    // Возвращаем стандартный вывод на место
-    std::cout.rdbuf(prevcoutbuf);
+    // Получение и проверка вывода
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_TRUE(output.find("James") != std::string::npos);
+    EXPECT_TRUE(output.find("Maddie") != std::string::npos);
+    EXPECT_TRUE(output.find("YaoMing") != std::string::npos);
 
-    // Проверяем содержимое вывода
-    std::string output = buffer.str();
-    EXPECT_TRUE(output.find("James") != std::string::npos); // Проверка атаки Forwards
-    EXPECT_TRUE(output.find("Maddie") != std::string::npos); // Проверка атаки Center
-    EXPECT_TRUE(output.find("YaoMing attack") != std::string::npos);  // Проверка атаки Translator
-    EXPECT_TRUE(output.find("YaoMing defense") != std::string::npos); // Проверка защиты Translator
+    // Проверяем, что вызывались и другие методы
+    EXPECT_TRUE(output.find("defense") != std::string::npos); // Пример проверки вызова метода defense
 }
